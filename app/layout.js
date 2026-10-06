@@ -2,6 +2,7 @@ import "./globals.css";
 import { Hind_Siliguri } from "next/font/google";
 import Nav from "../components/Nav";
 import PWA from "../components/PWA";
+import Footer from "../components/Footer";
 const font = Hind_Siliguri({ subsets: ["bengali", "latin"], weight: ["400", "600", "700"], variable: "--font" });
 export const metadata = {
   title: "NextGen Kadamtoli",
@@ -13,7 +14,7 @@ export const viewport = { themeColor: "#0E5A3C", width: "device-width", initialS
 export default function RootLayout({ children }) {
   return (
     <html lang="bn"><body className={font.variable}>
-      <Nav /><PWA /><main className="wrap">{children}</main>
+      <Nav /><PWA /><main className="wrap">{children}</main><Footer />
     </body></html>
   );
 }

@@ -15,12 +15,12 @@ export default function PWA() {
   }, []);
   const install = async () => { evt.prompt(); await evt.userChoice; setEvt(null); };
   if (evt) return (
-    <div className="wrap" style={{ padding: "10px 16px" }}>
+    <div className="pwa">
       <button onClick={install}>📲 ফোনে অ্যাপ হিসেবে ইন্সটল করুন</button>
     </div>
   );
   if (iosHint) return (
-    <p className="wrap" style={{ padding: "10px 16px" }}>
+    <p className="pwa">
       iPhone-এ ইন্সটল করতে Safari-র Share বাটনে চেপে "Add to Home Screen" বেছে নিন।
     </p>
   );
