@@ -15,7 +15,7 @@ export default function Login() {
       : await supabase.auth.signUp({ email: f.email, password: f.password, options: { data: { full_name: f.name } } });
     if (error) return setMsg(error.message);
     if (mode === "up") return setMsg("ইমেইলে পাঠানো লিংকে ক্লিক করে অ্যাকাউন্ট নিশ্চিত করুন।");
-    r.push("/");
+    r.push("/dashboard");
   };
   return (<>
     <h2>{mode === "in" ? "লগইন" : "নতুন অ্যাকাউন্ট"}</h2>

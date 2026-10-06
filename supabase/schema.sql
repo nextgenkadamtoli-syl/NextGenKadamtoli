@@ -1,7 +1,7 @@
 -- Supabase > SQL Editor-এ পুরোটা পেস্ট করে Run করুন
 create table profiles (
   id uuid primary key references auth.users on delete cascade,
-  full_name text, phone text, area text,
+  full_name text, phone text, area text, bio text,
   created_at timestamptz default now()
 );
 create table events (
@@ -68,3 +68,12 @@ create policy "donor insert" on blood_donors for insert with check (auth.uid()=u
 create policy "donor update" on blood_donors for update using (auth.uid()=user_id);
 create policy "request insert" on blood_requests for insert with check (auth.uid()=requester_id);
 create policy "post insert" on posts for insert with check (auth.uid()=author_id);
+
+-- ড্যাশবোর্ড/প্রোফাইলের জন্য অতিরিক্ত নিয়ম
+create policy "own profile insert" on profiles for insert with check (auth.uid()=id);
+create policy "delete own event" on events for delete using (auth.uid()=organizer_id);
+create policy "delete own post" on posts for delete using (auth.uid()=author_id);
+create policy "edit own post" on posts for update using (auth.uid()=author_id);
+create policy "delete own request" on blood_requests for delete using (auth.uid()=requester_id);
+create policy "edit own request" on blood_requests for update using (auth.uid()=requester_id);
+create policy "donor delete" on blood_donors for delete using (auth.uid()=user_id);

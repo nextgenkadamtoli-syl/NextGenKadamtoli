@@ -14,9 +14,11 @@ export default function Nav() {
       <b><Link href="/">NextGen Kadamtoli</Link></b>
       <Link href="/events">ইভেন্ট</Link>
       <Link href="/blood">রক্তদান</Link>
-      {user
-        ? <a href="#" onClick={(e) => { e.preventDefault(); supabase.auth.signOut(); }}>লগআউট</a>
-        : <Link href="/login">লগইন</Link>}
+      {user ? <>
+        <Link href="/dashboard">ড্যাশবোর্ড</Link>
+        <Link href="/profile">প্রোফাইল</Link>
+        <a href="#" onClick={(e) => { e.preventDefault(); supabase.auth.signOut().then(() => { window.location.href = "/"; }); }}>লগআউট</a>
+      </> : <Link href="/login">লগইন</Link>}
     </div></nav>
   );
 }
